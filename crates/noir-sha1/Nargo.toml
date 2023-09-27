@@ -1,0 +1,5 @@
+[package]
+name = "sha1"
+type = "lib"
+authors = ["@michaelelliot"]
+compiler_version = "0.10.5"

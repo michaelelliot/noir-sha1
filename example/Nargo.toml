@@ -1,0 +1,8 @@
+[package]
+name = "sha1_example"
+type = "bin"
+authors = ["@michaelelliot"]
+compiler_version = "0.10.5"
+
+[dependencies]
+sha1 = { path = "../crates/noir-sha1" }
