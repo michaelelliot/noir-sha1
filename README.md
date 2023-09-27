@@ -1,6 +1,6 @@
 # Noir SHA-1
 
-[![MIT License][license-shield]][license-url]
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Nargo Test 🌌](https://github.com/michaelelliot/noir-sha1/actions/workflows/test.yml/badge.svg)](https://github.com/michaelelliot/noir-sha1/actions/workflows/test.yml)
 
 This library contains an implementation of the SHA-1 hashing algorithm.
 
