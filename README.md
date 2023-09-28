@@ -19,7 +19,7 @@ In your `Nargo.toml` file, add the following dependency:
 
 ```toml
 [dependencies]
-sha1 = { tag = "v0.0.2", git = "https://github.com/michaelelliot/noir-sha1", directory = "crates/noir-sha1" }
+sha1 = { tag = "v0.0.3", git = "https://github.com/michaelelliot/noir-sha1", directory = "crates/noir-sha1" }
 ```
 
 Then use it in your Noir project like this:
@@ -31,6 +31,31 @@ fn main(input: [u8; 128], input_len: u16, hash: pub [u8; 20]) {
     // Generate SHA-1 hash digest of input
     let compare_hash = sha1(input, input_len);
     assert(hash == compare_hash);
+}
+```
+
+*NOTE:* The `input` parameter must be a `u8` byte array with a length that's a multiple of 64, such as 64, 128, 192, or 256 etc. (currently up to a maximum of 256).
+The rest of the byte array can be zero-padded (`0x00`) as shown in the example below, with the `input_len` parameter specifying the number of initial bytes from the `input` to be used for calculating the digest.
+
+Here's an example unit test for the `main` entrypoint above:
+
+```rust
+#[test]
+fn test_main() {
+    // Hal Finney was a cypherpunk pioneer
+    let test_msg: [u8; 64] = [
+        0x48, 0x61, 0x6c, 0x20, 0x46, 0x69, 0x6e, 0x6e,
+        0x65, 0x79, 0x20, 0x77, 0x61, 0x73, 0x20, 0x61,
+        0x20, 0x63, 0x79, 0x70, 0x68, 0x65, 0x72, 0x70,
+        0x75, 0x6e, 0x6b, 0x20, 0x70, 0x69, 0x6f, 0x6e,
+        0x65, 0x65, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00,
+        0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+        0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+        0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00];
+    let test_hash: [u8; 20] =  [
+        0x3a, 0x93, 0x96, 0x11, 0xee, 0x6e, 0x4d, 0xfb, 0xe2, 0x0e,
+        0xc2, 0xcb, 0xf2, 0xa3, 0x55, 0x52, 0xbc, 0x47, 0x03, 0x4a];
+    main(test_msg, 35, test_hash);
 }
 ```
 
