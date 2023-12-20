@@ -1,4 +1,4 @@
-fn sha1<M>(input: [u8; M], input_len: u16) -> [u8; 20] {
+pub fn sha1<M>(input: [u8; M], input_len: u16) -> [u8; 20] {
     let mut h0: u32 = 0x67452301;
     let mut h1: u32 = 0xEFCDAB89;
     let mut h2: u32 = 0x98BADCFE;

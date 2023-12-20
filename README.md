@@ -1,6 +1,8 @@
 # Noir SHA-1
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Nargo Test 🌌](https://github.com/michaelelliot/noir-sha1/actions/workflows/test.yml/badge.svg)](https://github.com/michaelelliot/noir-sha1/actions/workflows/test.yml)
+[![Noir](https://img.shields.io/badge/Noir-0.16.0-blue.svg)](https://github.com/noir-lang/noir)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Nargo Test 🌌](https://github.com/michaelelliot/noir-sha1/actions/workflows/test.yml/badge.svg)](https://github.com/michaelelliot/noir-sha1/actions/workflows/test.yml)
 
 This library contains an implementation of the SHA-1 hashing algorithm.
 
@@ -19,13 +21,13 @@ In your `Nargo.toml` file, add the following dependency:
 
 ```toml
 [dependencies]
-sha1 = { tag = "v0.0.3", git = "https://github.com/michaelelliot/noir-sha1", directory = "crates/noir-sha1" }
+sha1 = { tag = "v0.0.4", git = "https://github.com/michaelelliot/noir-sha1", directory = "crates/noir-sha1" }
 ```
 
 Then use it in your Noir project like this:
 
 ```rust
-use dep::sha1::{sha1};
+use dep::sha1::sha1;
 
 fn main(input: [u8; 128], input_len: u16, hash: pub [u8; 20]) {
     // Generate SHA-1 hash digest of input
