@@ -21,7 +21,7 @@ In your `Nargo.toml` file, add the following dependency:
 
 ```toml
 [dependencies]
-sha1 = { tag = "v0.0.4", git = "https://github.com/michaelelliot/noir-sha1", directory = "crates/noir-sha1" }
+sha1 = { tag = "v0.0.5", git = "https://github.com/michaelelliot/noir-sha1", directory = "crates/noir-sha1" }
 ```
 
 Then use it in your Noir project like this:

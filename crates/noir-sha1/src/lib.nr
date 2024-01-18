@@ -1,3 +1,17 @@
+#[builtin(from_field)]
+fn from_field<T>(_x: Field) -> T {}
+
+#[builtin(as_field)]
+fn as_field<T>(_x: T) -> Field {}
+
+fn wrapping_add<T>(a: T, b: T) -> T {
+    from_field(as_field(a) + as_field(b))
+}
+
+fn wrapping_add_5<T>(a: T, b: T, c: T, d: T, e: T) -> T {
+    from_field(as_field(a) + as_field(b) + as_field(c) + as_field(d) + as_field(e))
+}
+
 pub fn sha1<M>(input: [u8; M], input_len: u16) -> [u8; 20] {
     let mut h0: u32 = 0x67452301;
     let mut h1: u32 = 0xEFCDAB89;
@@ -52,18 +66,18 @@ pub fn sha1<M>(input: [u8; M], input_len: u16) -> [u8; 20] {
                 } else {
                     (b ^ c ^ d, 0xCA62C1D6)
                 };
-                let temp: u32 = left_rotate(a, 5) + f + e + k + w[i];
+                let temp: u32 = wrapping_add_5(left_rotate(a, 5), f, e, k, w[i]);
                 e = d;
                 d = c;
                 c = left_rotate(b, 30);
                 b = a;
                 a = temp;
             }
-            h0 = h0 + a;
-            h1 = h1 + b;
-            h2 = h2 + c;
-            h3 = h3 + d;
-            h4 = h4 + e;
+            h0 = wrapping_add(h0, a);
+            h1 = wrapping_add(h1, b);
+            h2 = wrapping_add(h2, c);
+            h3 = wrapping_add(h3, d);
+            h4 = wrapping_add(h4, e);
         }
     }
     let h0_bytes = u32_to_u8(h0);
